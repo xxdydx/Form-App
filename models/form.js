@@ -4,6 +4,7 @@ const questionSchema = new mongoose.Schema({
   content: String,
   section: String,
   answer: String,
+  remarks: String,
 });
 questionSchema.set("toJSON", {
   transform: (document, returnedObject) => {

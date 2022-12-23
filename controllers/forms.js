@@ -32,15 +32,6 @@ formRouter.post("/", async (request, response, next) => {
     });
   }
 
-  if (request.body.batch) {
-    try {
-      await Form.create(request.body.batch);
-      response.status(201).json(request.body);
-    } catch (exception) {
-      next(exception);
-    }
-  }
-
   const form = new Form({
     title: body.title,
     dateSubmitted: body.dateSubmitted,
