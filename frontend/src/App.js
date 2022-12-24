@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useSelector } from "react-redux";
-import Section from "./components/Section";
+import Section from "./components/sampleForms/fullview/Section";
 import { createSubmission } from "./reducers/formReducer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -12,8 +12,8 @@ import {
   Route,
   useMatch,
 } from "react-router-dom";
-import FormView from "./components/FormView";
-import FormList from "./components/FormList";
+import FormView from "./components/sampleForms/fullview/FormView";
+import FormList from "./components/sampleForms/list/FormList";
 import NavigationBar from "./components/NavigationBar";
 
 function App() {

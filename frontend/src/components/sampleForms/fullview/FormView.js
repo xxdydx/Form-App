@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import Section from "./Section";
-import { createSubmission } from "../reducers/formReducer";
+import { createSubmission } from "../../../reducers/formReducer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { initializeSampleForms } from "../reducers/sampleFormReducer";
+import { initializeSampleForms } from "../../../reducers/sampleFormReducer";
 import { Button } from "flowbite-react";
 import html2pdf from "html2pdf.js";
 

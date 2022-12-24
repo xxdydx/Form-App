@@ -1,7 +1,7 @@
 import Form from "./Form";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { initializeSampleForms } from "../reducers/sampleFormReducer";
+import { initializeSampleForms } from "../../../reducers/sampleFormReducer";
 
 const FormList = () => {
   const sampleForms = useSelector((state) => state.sampleForms);
