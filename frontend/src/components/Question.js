@@ -53,9 +53,21 @@ const Question = ({ question, id }) => {
       <p>{question.content}</p>
       <FormControl>
         <RadioGroup onChange={AnswerOnChange}>
-          <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-          <FormControlLabel value="No" control={<Radio />} label="No" />
-          <FormControlLabel value="N/A" control={<Radio />} label="N/A" />
+          <FormControlLabel
+            value="Yes"
+            control={<Radio required={true} />}
+            label="Yes"
+          />
+          <FormControlLabel
+            value="No"
+            control={<Radio required={true} />}
+            label="No"
+          />
+          <FormControlLabel
+            value="N/A"
+            control={<Radio required={true} />}
+            label="N/A"
+          />
         </RadioGroup>
       </FormControl>
       {question.answer === "No" ? (

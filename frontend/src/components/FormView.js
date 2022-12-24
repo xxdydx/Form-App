@@ -51,16 +51,14 @@ const FormView = ({ form }) => {
             </h1>
             <address className="flex items-center mb-6 not-italic"></address>
           </header>
-          {sections.map((section, i) => (
-            <Section key={i} section={section} form={form} />
-          ))}
-          <Button
-            className="mt-4 w-24"
-            onClick={handleSubmit}
-            variant="contained"
-          >
-            Submit
-          </Button>
+          <form onSubmit={handleSubmit}>
+            {sections.map((section, i) => (
+              <Section key={i} section={section} form={form} />
+            ))}
+            <Button className="mt-4 w-24" type="submit" variant="contained">
+              Submit
+            </Button>
+          </form>
         </article>
       </div>
     </main>
