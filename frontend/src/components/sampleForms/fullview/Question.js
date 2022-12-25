@@ -16,6 +16,8 @@ const Question = ({ question, id }) => {
   const dispatch = useDispatch();
   const sampleForms = useSelector((state) => state.sampleForms);
   const form = sampleForms.find((form) => form.id === id);
+  const questions1 = form.questions;
+  const index = questions1.findIndex((qn) => qn.id === question.id);
   const AnswerOnChange = (event) => {
     const updatedQuestion = {
       ...question,
@@ -50,7 +52,9 @@ const Question = ({ question, id }) => {
   };
   return (
     <div className="py-2">
-      <p>{question.content}</p>
+      <p>
+        {index + 1}. {question.content}
+      </p>
       <FormControl>
         <RadioGroup onChange={AnswerOnChange}>
           <FormControlLabel

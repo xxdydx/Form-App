@@ -17,10 +17,11 @@ const FormView = ({ form }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sampleForms = useSelector((state) => state.sampleForms);
-  const form1 = sampleForms.find((form2) => form2.id === form.id);
   if (form === undefined) {
     return null;
   }
+  const form1 = sampleForms.find((form2) => form2.id === form.id);
+
   const questionsToSubmit = form.questions;
   const sections1 = questionsToSubmit.map((question) => question.section);
   const sections = [...new Set(sections1)];

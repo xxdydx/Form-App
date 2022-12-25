@@ -15,7 +15,7 @@ const Section = ({ section, form }) => {
       <h1 className="text-2xl pb-2 font-bold dark:text-white">
         Section {section}
       </h1>
-      {questionsForSect.map((question) => (
+      {questionsForSect.map((question, i) => (
         <Question key={question.id} question={question} id={form.id} />
       ))}
       <br />
