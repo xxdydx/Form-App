@@ -77,6 +77,7 @@ const Question = ({ question, id }) => {
           sizing="lg"
           placeholder="Remarks"
           onChange={RemarksOnChange}
+          required={true}
         />
       ) : null}
     </div>

@@ -6,9 +6,12 @@ import { useEffect } from "react";
 import { initializeSampleForms } from "../../../reducers/sampleFormReducer";
 import { Button } from "flowbite-react";
 import html2pdf from "html2pdf.js";
+import { useNavigate } from "react-router-dom";
+import { setNotification } from "../../../reducers/notificationReducer";
 
 const FormView = ({ form }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sampleForms = useSelector((state) => state.sampleForms);
   const form1 = sampleForms.find((form2) => form2.id === form.id);
   if (form === undefined) {
@@ -27,17 +30,19 @@ const FormView = ({ form }) => {
     };
     try {
       await dispatch(createSubmission(newFormSubmission));
-      console.log("submitted");
-      const element = document.getElementById("form");
-      html2pdf(element, {
-        margin: 0.5,
-        filename: "form.pdf",
-        image: { type: "jpg", quality: 1 },
-        html2canvas: { scale: 2, logging: true },
-        jsPDF: { unit: "in", format: "a4" },
-      });
+
+      const notif = {
+        message: `Form submitted`,
+        type: "success",
+      };
+      dispatch(setNotification(notif, 5000));
+      navigate("/submissions");
     } catch (error) {
-      console.log(error);
+      const notif = {
+        message: `Form cannot be added. ${error}`,
+        type: "failure",
+      };
+      dispatch(setNotification(notif, 5000));
     }
   };
 

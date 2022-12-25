@@ -37,4 +37,11 @@ export const updateQuestion = (updatedForm) => {
   };
 };
 
+export const createForm = (formObject) => {
+  return async (dispatch) => {
+    const form = await sampleFormService.create(formObject);
+    dispatch(create(form));
+  };
+};
+
 export default sampleFormSlice.reducer;

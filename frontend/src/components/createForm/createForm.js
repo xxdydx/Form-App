@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { Button, TextInput, Label } from "flowbite-react";
-import sampleFormService from "../../services/sampleForms";
+import { useNavigate } from "react-router-dom";
+import { VscRemove } from "react-icons/vsc";
+import { VscAdd } from "react-icons/vsc";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../reducers/notificationReducer";
+import { createForm } from "../../reducers/sampleFormReducer";
 
 const CreateForm = () => {
   const [inputQuestions, setInputQuestions] = useState({});
   const [inputSections, setInputSections] = useState({});
   const [title, setTitle] = useState("");
   const [counter, setCounter] = useState(1);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleAddClick = () => {
     setCounter(counter + 1);
-    console.log(counter);
+  };
+  const handleRemoveClick = () => {
+    setCounter(counter - 1);
   };
 
   const handleTitleChange = (event) => {
@@ -51,10 +60,19 @@ const CreateForm = () => {
       questions: questions,
     };
     try {
-      await sampleFormService.create(submission);
-      console.log("submitted");
+      dispatch(createForm(submission));
+      const notif = {
+        message: `Form added.`,
+        type: "success",
+      };
+      dispatch(setNotification(notif, 5000));
+      navigate("/forms");
     } catch (error) {
-      console.log(error);
+      const notif = {
+        message: `Form cannot be added due to server error.`,
+        type: "failure",
+      };
+      dispatch(setNotification(notif, 5000));
     }
   };
 
@@ -88,7 +106,7 @@ const CreateForm = () => {
                   <TextInput
                     onChange={handleOnChange}
                     key={c}
-                    className="flex-1 pr-2 w-11/12"
+                    className="flex-1 pr-2 w-10/12"
                     id={index}
                     placeholder="Question"
                     type="text"
@@ -96,7 +114,7 @@ const CreateForm = () => {
                     required={true}
                   />
                   <TextInput
-                    className="flex-2 w-1/12"
+                    className="flex-2 w-2/12"
                     key={c}
                     id={index}
                     onChange={handleSectionChange}
@@ -106,13 +124,16 @@ const CreateForm = () => {
                 </div>
               );
             })}
-            <Button
-              className="mt-4 w-30"
-              onClick={handleClick}
-              variant="contained"
-            >
-              Add Question
-            </Button>
+            <div className="flex flex-wrap items-center gap-2 mt-6">
+              <Button onClick={handleAddClick} color="success">
+                <VscAdd className="h-4 w-4" />
+              </Button>
+              {counter > 1 ? (
+                <Button onClick={handleRemoveClick} color="failure">
+                  <VscRemove className="h-4 w-4" />
+                </Button>
+              ) : null}
+            </div>
             <Button className="mt-4 w-30" type="submit" variant="contained">
               Submit
             </Button>
