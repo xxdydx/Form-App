@@ -49,7 +49,7 @@ const Question = ({ question, id }) => {
     dispatch(updateQuestion(updatedForm));
   };
   return (
-    <div className="py-4">
+    <div className="py-2">
       <p>{question.content}</p>
       <FormControl>
         <RadioGroup onChange={AnswerOnChange}>

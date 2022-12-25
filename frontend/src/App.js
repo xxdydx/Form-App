@@ -15,6 +15,7 @@ import {
 import FormView from "./components/sampleForms/fullview/FormView";
 import FormList from "./components/sampleForms/list/FormList";
 import NavigationBar from "./components/NavigationBar";
+import CreateForm from "./components/createForm/CreateForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/forms" element={<FormList />} />
         <Route path="/forms/:id" element={<FormView form={form} />} />
+        <Route path="/create" element={<CreateForm />} />
       </Routes>
     </div>
   );
