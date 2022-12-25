@@ -8,6 +8,10 @@ import { Button } from "flowbite-react";
 import html2pdf from "html2pdf.js";
 import { useNavigate } from "react-router-dom";
 import { setNotification } from "../../../reducers/notificationReducer";
+import { VscEdit } from "react-icons/vsc";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteForm } from "../../../reducers/sampleFormReducer";
 
 const FormView = ({ form }) => {
   const dispatch = useDispatch();
@@ -46,6 +50,26 @@ const FormView = ({ form }) => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm(`Do you want to delete this form?`)) {
+      try {
+        await dispatch(deleteForm(id));
+        const notif = {
+          message: "Successfully deleted form",
+          type: "success",
+        };
+        dispatch(setNotification(notif, 5000));
+        navigate("/");
+      } catch (error) {
+        const notif = {
+          message: error.message,
+          type: "error",
+        };
+        dispatch(setNotification(notif, 5000));
+      }
+    }
+  };
+
   return (
     <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 min-h-screen">
       <div id="form" className="flex justify-between px-4 mx-auto max-w-6xl ">
@@ -54,6 +78,20 @@ const FormView = ({ form }) => {
             <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
+            <div className="flex flex-wrap items-center gap-2 mt-6">
+              <Button className="h-3 w-24" color="warning">
+                <EditIcon className="mr-2 h-3 w-3" />
+                Edit
+              </Button>
+              <Button
+                onClick={() => handleDelete(form.id)}
+                className="h-3 w-24"
+                color="failure"
+              >
+                <DeleteIcon className="mr-2 h-3 w-3" />
+                Delete
+              </Button>
+            </div>
             <address className="flex items-center mb-6 not-italic"></address>
           </header>
           <form onSubmit={handleSubmit}>

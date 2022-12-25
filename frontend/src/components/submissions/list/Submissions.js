@@ -1,5 +1,7 @@
 import SubmissionForm from "./SubmissionForm";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "flowbite-react";
+import ViewListIcon from "@mui/icons-material/ViewList";
 
 const Submissions = () => {
   const forms = useSelector((state) => state.forms);
@@ -34,11 +36,17 @@ const Submissions = () => {
                 .sort(compareDate)
                 .map((form) => <SubmissionForm key={form.id} form={form} />)
             ) : (
-              <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+              <article className="py-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                 <footer className="flex justify-between items-center"></footer>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-500 dark:text-gray-400 mb-4">
                   No submissions yet... Submit a form!
                 </p>
+                <a href="/">
+                  <Button className="mt-4 w-32" variant="contained">
+                    <ViewListIcon className="mr-2 h-2.5 w-2.5" />
+                    Forms
+                  </Button>
+                </a>
               </article>
             )}
           </article>

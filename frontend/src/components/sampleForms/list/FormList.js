@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { initializeSampleForms } from "../../../reducers/sampleFormReducer";
 import { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import { Button } from "flowbite-react";
 
 const FormList = () => {
   const [query, setQuery] = useState("");
@@ -67,11 +69,17 @@ const FormList = () => {
                 .filter(search)
                 .map((form) => <Form key={form.id} form={form} />)
             ) : (
-              <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+              <article className="py-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                 <footer className="flex justify-between items-center"></footer>
-                <p className="text-gray-500 dark:text-gray-400">
-                  No forms yet... Create one!
+                <p className="text-gray-500 dark:text-gray-400 mb-4">
+                  No forms yet... Create a form!
                 </p>
+                <a href="/create">
+                  <Button className="mt-4" variant="contained">
+                    <AddIcon className="mr-2 h-2.5 w-2.5" />
+                    Create a Form
+                  </Button>
+                </a>
               </article>
             )}
           </article>

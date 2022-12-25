@@ -18,10 +18,14 @@ const formSlice = createSlice({
         item.id === updatedForm.id ? updatedForm : item
       );
     },
+    remove(state, action) {
+      const id = action.payload;
+      return state.filter((forms) => forms.id !== id);
+    },
   },
 });
 
-export const { create, edit, setForms } = formSlice.actions;
+export const { create, edit, setForms, remove } = formSlice.actions;
 
 export const initializeForms = () => {
   return async (dispatch) => {
@@ -34,6 +38,13 @@ export const createSubmission = (formObject) => {
   return async (dispatch) => {
     const newSubmission = await formService.create(formObject);
     dispatch(create(newSubmission));
+  };
+};
+
+export const deleteSubmission = (id) => {
+  return async (dispatch) => {
+    const response = await formService.remove(id);
+    dispatch(remove(id));
   };
 };
 

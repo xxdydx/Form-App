@@ -16,13 +16,17 @@ const sampleFormSlice = createSlice({
         item.id === updatedBlog.id ? updatedBlog : item
       );
     },
+    remove(state, action) {
+      const id = action.payload;
+      return state.filter((forms) => forms.id !== id);
+    },
     setSampleForms(state, action) {
       return action.payload;
     },
   },
 });
 
-export const { create, edit, setSampleForms } = sampleFormSlice.actions;
+export const { create, edit, remove, setSampleForms } = sampleFormSlice.actions;
 
 export const initializeSampleForms = () => {
   return async (dispatch) => {
@@ -41,6 +45,13 @@ export const createForm = (formObject) => {
   return async (dispatch) => {
     const form = await sampleFormService.create(formObject);
     dispatch(create(form));
+  };
+};
+
+export const deleteForm = (id) => {
+  return async (dispatch) => {
+    const response = await sampleFormService.remove(id);
+    dispatch(remove(id));
   };
 };
 

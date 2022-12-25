@@ -9,7 +9,7 @@ const Form = ({ form }) => {
   }
 
   return (
-    <Card href={`/forms/${form.id}`} className="mb-4">
+    <Card className="mb-4" href={`/forms/${form.id}`}>
       <a>
         <div>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
