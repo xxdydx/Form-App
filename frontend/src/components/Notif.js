@@ -10,7 +10,10 @@ const Notif = () => {
     return null;
   } else if (notification.type === "success") {
     return (
-      <Toast className=" fixed  bottom-5 left-5">
+      <Toast
+        className=" fixed  bottom-5 left-5
+      "
+      >
         <div
           className="inline-flex 
 h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200 
@@ -25,7 +28,10 @@ h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-
   }
 
   return (
-    <Toast className="fixed bottom-5 left-5">
+    <Toast
+      className="fixed bottom-5 left-5
+    "
+    >
       <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-500 dark:bg-red-800 dark:text-red-200">
         <ClearIcon />
       </div>

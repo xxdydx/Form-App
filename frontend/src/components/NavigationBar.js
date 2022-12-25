@@ -28,7 +28,6 @@ const NavigationBar = () => {
       </Navbar.Brand>
       <Navbar.Toggle className="justify-left" />
       <Navbar.Collapse>
-        <Navbar.Link href="/forms">Forms</Navbar.Link>
         <Navbar.Link href="/submissions">Submissions</Navbar.Link>
         <Navbar.Link href="/create">Add a Form</Navbar.Link>
       </Navbar.Collapse>

@@ -46,7 +46,7 @@ function App() {
     <div className="">
       <NavigationBar />
       <Routes>
-        <Route path="/forms" element={<FormList />} />
+        <Route path="/" element={<FormList />} />
         <Route path="/forms/:id" element={<FormView form={form} />} />
         <Route path="/create" element={<CreateForm />} />
         <Route path="/submissions" element={<Submissions />} />

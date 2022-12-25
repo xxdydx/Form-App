@@ -25,17 +25,23 @@ const Question = ({ question, index }) => {
     }
   };
   return (
-    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td class="text-sm py-4 px-6">{index + 1}</td>
+    <tr class="bg-white border-b  dark:bg-gray-800 dark:border-gray-700">
+      <td class="border border-black  text-black text-center text-sm py-2 px-3">
+        {index + 1}
+      </td>
       <th
         scope="row"
-        class="py-4 px-6 font-normal text-sm text-gray-900  dark:text-white"
+        class="border border-black 	  py-2 px-3 font-bold text-sm text-black dark:text-white"
       >
         {question.content}
       </th>
 
-      <td class="text-sm py-4 px-6">{question.answer}</td>
-      <td class="text-sm py-4 px-6">{question.remarks}</td>
+      <td class="text-sm text-center border border-black text-black py-2 px-3">
+        {question.answer}
+      </td>
+      <td class="text-sm border border-black text-black py-2 px-3">
+        {question.remarks}
+      </td>
     </tr>
   );
 };

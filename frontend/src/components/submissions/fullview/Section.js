@@ -12,22 +12,25 @@ const Section = ({ section, form }) => {
 
   return (
     <div className="py-2">
-      <h1 className="text-2xl pb-4 font-bold dark:text-white">
+      <h1 className="text-xl pb-4 font-bold dark:text-white">
         Section {section}
       </h1>
       <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" class="w-1/12 py-3 px-6">
+            <th
+              scope="col"
+              class="border border-black text-center w-1/12 py-2 px-3 "
+            >
               S/N
             </th>
 
-            <th scope="col" class="w-7/12 py-3 px-6">
+            <th scope="col" class="border border-black w-7/12 py-2 px-3 ">
               Item
             </th>
 
-            <th scope="col" class="w-2/12 py-3 px-6"></th>
-            <th scope="col" class="w-2/12 py-3 px-6">
+            <th scope="col" class="border border-black w-2/12 py-2 px-3"></th>
+            <th scope="col" class="border border-black w-2/12 py-2 px-3">
               Remarks
             </th>
           </tr>

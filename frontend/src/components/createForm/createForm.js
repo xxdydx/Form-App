@@ -66,7 +66,7 @@ const CreateForm = () => {
         type: "success",
       };
       dispatch(setNotification(notif, 5000));
-      navigate("/forms");
+      navigate("/");
     } catch (error) {
       const notif = {
         message: `Form cannot be added due to server error.`,

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Card } from "flowbite-react";
+import { Card, Dropdown } from "flowbite-react";
 
 const Form = ({ form }) => {
   const dispatch = useDispatch();
@@ -9,10 +9,14 @@ const Form = ({ form }) => {
   }
 
   return (
-    <Card className="mb-4" href={`/forms/${form.id}`}>
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {form.title}
-      </h5>
+    <Card href={`/forms/${form.id}`} className="mb-4">
+      <a>
+        <div>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {form.title}
+          </h5>
+        </div>
+      </a>
     </Card>
   );
 };
