@@ -45,4 +45,44 @@ formRouter.post("/", async (request, response, next) => {
   }
 });
 
+formRouter.put("/:id", async (request, response, next) => {
+  const body = request.body;
+  if (!body.dateSubmitted) {
+    return response.status(400).json({
+      error: "frontend error with date processing",
+    });
+  }
+  if (!body.questions) {
+    body.questions = [];
+  }
+  if (!body.title) {
+    return response.status(400).json({
+      error: "title is required",
+    });
+  }
+
+  const form = {
+    title: body.title,
+    dateSubmitted: body.dateSubmitted,
+    questions: body.questions,
+  };
+  try {
+    const updatedForm = await Form.findByIdAndUpdate(request.params.id, form, {
+      new: true,
+    });
+    response.json(updatedForm.toJSON());
+  } catch (exception) {
+    next(exception);
+  }
+});
+
+formRouter.delete("/:id", async (request, response, next) => {
+  try {
+    await Form.findByIdAndDelete(request.params.id);
+    response.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = formRouter;

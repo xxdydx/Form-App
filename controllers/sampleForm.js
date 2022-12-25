@@ -30,4 +30,44 @@ sampleFormRouter.post("/", async (request, response, next) => {
   }
 });
 
+sampleFormRouter.put("/:id", async (request, response, next) => {
+  const body = request.body;
+  if (!body.questions) {
+    return response.status(400).json({
+      error: "questions are required",
+    });
+  }
+  if (!body.title) {
+    return response.status(400).json({
+      error: "title is required",
+    });
+  }
+
+  const form = {
+    title: body.title,
+    questions: body.questions,
+  };
+  try {
+    const updatedForm = await sampleForm.findByIdAndUpdate(
+      request.params.id,
+      form,
+      {
+        new: true,
+      }
+    );
+    response.json(updatedForm.toJSON());
+  } catch (exception) {
+    next(exception);
+  }
+});
+
+sampleFormRouter.delete("/:id", async (request, response, next) => {
+  try {
+    await sampleForm.findByIdAndDelete(request.params.id);
+    response.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = sampleFormRouter;
