@@ -28,17 +28,13 @@ const CreateForm = () => {
 
   const handleOnChange = (e) => {
     const abc = {};
-    console.log(e.target.key);
     abc[e.target.id] = e.target.value;
-    console.log(abc);
     setInputQuestions({ ...inputQuestions, ...abc });
   };
 
   const handleSectionChange = (e) => {
     const abc = {};
-    console.log(e.target.key);
     abc[e.target.id] = e.target.value;
-    console.log(abc);
     setInputSections({ ...inputSections, ...abc });
   };
 
