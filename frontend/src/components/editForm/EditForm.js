@@ -101,14 +101,14 @@ const EditForm = ({ form }) => {
     try {
       await dispatch(updateForm(submission));
       const notif = {
-        message: `Form added.`,
+        message: `Form edited.`,
         type: "success",
       };
       dispatch(setNotification(notif, 5000));
       navigate("/");
     } catch (error) {
       const notif = {
-        message: `Form cannot be added due to server error.`,
+        message: `Form cannot be edited due to server error.`,
         type: "failure",
       };
       dispatch(setNotification(notif, 5000));
