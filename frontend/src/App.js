@@ -20,6 +20,7 @@ import CreateForm from "./components/createForm/CreateForm";
 import Submissions from "./components/submissions/list/Submissions";
 import SubmissionView from "./components/submissions/fullview/SubmissionView";
 import Notif from "./components/Notif";
+import EditForm from "./components/editForm/EditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,11 @@ function App() {
     ? submissions.find((form) => form.id === match1.params.id)
     : null;
 
+  const match2 = useMatch("/forms/edit/:id");
+  const form2 = match2
+    ? sampleForms.find((form) => form.id === match2.params.id)
+    : null;
+
   return (
     <div className="">
       <NavigationBar />
@@ -54,6 +60,7 @@ function App() {
           path="/submissions/:id"
           element={<SubmissionView form={form1} />}
         />
+        <Route path="/forms/edit/:id" element={<EditForm form={form2} />} />
       </Routes>
       <Notif />
     </div>

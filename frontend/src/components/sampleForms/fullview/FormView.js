@@ -80,7 +80,11 @@ const FormView = ({ form }) => {
               {form.title}
             </h1>
             <div className="flex flex-wrap items-center gap-2 mt-6">
-              <Button className="h-3 w-24" color="warning">
+              <Button
+                href={`/forms/edit/${form.id}`}
+                className="h-3 w-24"
+                color="warning"
+              >
                 <EditIcon className="mr-2 h-3 w-3" />
                 Edit
               </Button>

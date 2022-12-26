@@ -36,8 +36,8 @@ const FormList = () => {
               >
                 Search
               </label>
-              <div class="absolute top-0 right-0 pb-4">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div class="relative ">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pt-4 pointer-events-none">
                   <svg
                     aria-hidden="true"
                     class="mb-4 w-5 h-5 text-gray-500 dark:text-gray-400"

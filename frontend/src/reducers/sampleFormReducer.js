@@ -10,10 +10,9 @@ const sampleFormSlice = createSlice({
       state.push(question);
     },
     edit(state, action) {
-      const updatedBlog = action.payload;
-      console.log(updatedBlog);
+      const updatedForm = action.payload;
       return state.map((item) =>
-        item.id === updatedBlog.id ? updatedBlog : item
+        item.id === updatedForm.id ? updatedForm : item
       );
     },
     remove(state, action) {
@@ -52,6 +51,13 @@ export const deleteForm = (id) => {
   return async (dispatch) => {
     const response = await sampleFormService.remove(id);
     dispatch(remove(id));
+  };
+};
+
+export const updateForm = (newObject) => {
+  return async (dispatch) => {
+    const response = await sampleFormService.update(newObject);
+    dispatch(edit(response));
   };
 };
 
