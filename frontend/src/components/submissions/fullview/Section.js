@@ -37,7 +37,7 @@ const Section = ({ section, form }) => {
         </thead>
         <tbody>
           {questionsForSect.map((question, i) => (
-            <Question key={question.id} question={question} index={i} />
+            <Question key={question.id} question={question} id={form.id} />
           ))}
         </tbody>
       </table>

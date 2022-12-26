@@ -1,4 +1,11 @@
-const Question = ({ question, index }) => {
+import { useSelector } from "react-redux";
+
+const Question = ({ question, id }) => {
+  const submissions = useSelector((state) => state.forms);
+  const submission = submissions.find((form) => form.id === id);
+  const questions1 = submission.questions;
+  const index = questions1.findIndex((qn) => qn.id === question.id);
+
   const answerForQ = (answer) => {
     if (answer === "No") {
       return (
