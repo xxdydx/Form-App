@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, TextInput, Label } from "flowbite-react";
+import { Button, TextInput, Label, FileInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { VscRemove, VscRepoForked } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
@@ -12,6 +12,7 @@ const EditForm = ({ form }) => {
   const [originalQuestions, setOriginalQns] = useState([]);
   const [inputSections, setInputSections] = useState({});
   const [title, setTitle] = useState("");
+  const [file, setFile] = useState("");
   const [counter, setCounter] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,6 +67,9 @@ const EditForm = ({ form }) => {
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
 
   const handleOnChange = (e) => {
     const abc = {};
@@ -96,9 +100,10 @@ const EditForm = ({ form }) => {
     submission.append("title", title);
     submission.append("logo", file);
     submission.append("questions", JSON.stringify(questions));
+    submission.append("id", form.id);
 
     try {
-      await dispatch(updateForm(submission));
+      await dispatch(updateForm(submission, form.id));
       const notif = {
         message: `Form edited.`,
         type: "success",

@@ -74,6 +74,7 @@ const SubmissionView = ({ form }) => {
           </header>
 
           <div id="form" class="overflow-x-auto relative">
+            <img className="pb-6" src={`/images/${form.logo}`} />
             <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>

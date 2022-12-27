@@ -13,8 +13,8 @@ const create = async (newObject) => {
   const response = await axios.post(baseUrl, newObject, config);
   return response.data;
 };
-const update = async (newObject) => {
-  const response = await axios.put(`${baseUrl}/${newObject.id}`, newObject);
+const update = async (newObject, id) => {
+  const response = await axios.put(`${baseUrl}/${id}`, newObject);
   return response.data;
 };
 const remove = async (id) => {

@@ -12,6 +12,7 @@ import { VscEdit } from "react-icons/vsc";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteForm } from "../../../reducers/sampleFormReducer";
+import { useState } from "react";
 
 const FormView = ({ form }) => {
   const dispatch = useDispatch();
@@ -29,11 +30,13 @@ const FormView = ({ form }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const newFormSubmission = {
-      title: form.title,
-      dateSubmitted: new Date(),
-      questions: form1.questions,
-    };
+
+    const newFormSubmission = new FormData();
+    newFormSubmission.append("title", form.title);
+    newFormSubmission.append("logo", form.logo);
+    newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
+    newFormSubmission.append("questions", JSON.stringify(form1.questions));
+
     try {
       await dispatch(createSubmission(newFormSubmission));
 
@@ -48,6 +51,7 @@ const FormView = ({ form }) => {
         message: `Form cannot be added. ${error}`,
         type: "failure",
       };
+      console.log(error.message);
       dispatch(setNotification(notif, 5000));
     }
   };
@@ -80,7 +84,7 @@ const FormView = ({ form }) => {
             <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
-            <img src={`/images/${form.logo}`} />
+
             <div className="flex flex-wrap items-center gap-2 mt-6">
               <Button
                 href={`/forms/edit/${form.id}`}

@@ -30,7 +30,7 @@ const CreateForm = () => {
     if (event.target.files[0].size > 2) {
       alert("File size exceeds 2MB.");
     }
-    fileExt = event.target.file[0];
+
     setFile(event.target.files[0]);
   };
 

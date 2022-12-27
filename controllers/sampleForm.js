@@ -32,8 +32,6 @@ sampleFormRouter.post(
   upload.single("logo"),
   async (request, response, next) => {
     const body = request.body;
-    console.log(body.questions);
-
     const newSampleForm = new sampleForm({
       title: body.title,
       questions: JSON.parse(body.questions),
@@ -66,7 +64,7 @@ sampleFormRouter.put(
 
     const form = {
       title: body.title,
-      questions: body.questions,
+      questions: JSON.parse(body.questions),
       logo: request.file.originalname,
     };
     try {

@@ -54,9 +54,9 @@ export const deleteForm = (id) => {
   };
 };
 
-export const updateForm = (newObject) => {
+export const updateForm = (newObject, id) => {
   return async (dispatch) => {
-    const response = await sampleFormService.update(newObject);
+    const response = await sampleFormService.update(newObject, id);
     dispatch(edit(response));
   };
 };

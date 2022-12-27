@@ -7,7 +7,10 @@ const getAll = () => {
 };
 
 const create = async (newObject) => {
-  const response = await axios.post(baseUrl, newObject);
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+  };
+  const response = await axios.post(baseUrl, newObject, config);
   return response.data;
 };
 const update = async (newObject) => {

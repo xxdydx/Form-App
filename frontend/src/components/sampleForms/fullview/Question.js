@@ -30,6 +30,7 @@ const Question = ({ question, id }) => {
           item.id === updatedQuestion.id ? updatedQuestion : item
         ),
       ],
+      logo: form.logo,
       id: id,
     };
     dispatch(updateQuestion(updatedForm));

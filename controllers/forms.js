@@ -1,5 +1,16 @@
 const formRouter = require("express").Router();
+const multer = require("multer");
 const Form = require("../models/form");
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./frontend/public/images");
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 formRouter.get("/", async (req, res) => {
   const forms = await Form.find({});
@@ -15,7 +26,7 @@ formRouter.get("/:id", async (request, response) => {
   }
 });
 
-formRouter.post("/", async (request, response, next) => {
+formRouter.post("/", upload.single("logo"), async (request, response, next) => {
   const body = request.body;
 
   if (!body.dateSubmitted) {
@@ -34,8 +45,9 @@ formRouter.post("/", async (request, response, next) => {
 
   const form = new Form({
     title: body.title,
-    dateSubmitted: body.dateSubmitted,
-    questions: body.questions,
+    dateSubmitted: JSON.parse(body.dateSubmitted),
+    logo: body.logo,
+    questions: JSON.parse(body.questions),
   });
   try {
     const savedForm = await form.save();

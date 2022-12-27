@@ -17,6 +17,7 @@ questionSchema.set("toJSON", {
 const formSchema = new mongoose.Schema({
   title: String,
   dateSubmitted: Date,
+  logo: String,
   questions: [questionSchema],
 });
 formSchema.set("toJSON", {
