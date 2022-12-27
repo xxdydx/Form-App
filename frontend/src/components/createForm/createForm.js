@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, TextInput, Label } from "flowbite-react";
+import { Button, TextInput, Label, FileInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { VscRemove } from "react-icons/vsc";
 import { VscAdd } from "react-icons/vsc";
@@ -11,6 +11,7 @@ const CreateForm = () => {
   const [inputQuestions, setInputQuestions] = useState({});
   const [inputSections, setInputSections] = useState({});
   const [title, setTitle] = useState("");
+  const [file, setFile] = useState("");
   const [counter, setCounter] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ const CreateForm = () => {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+  };
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
   const handleOnChange = (e) => {
@@ -51,12 +55,13 @@ const CreateForm = () => {
       });
     }
 
-    const submission = {
-      title: title,
-      questions: questions,
-    };
+    const submission = new FormData();
+    submission.append("title", title);
+    submission.append("logo", file);
+    submission.append("questions", JSON.stringify(questions));
+    console.log(submission);
     try {
-      dispatch(createForm(submission));
+      await dispatch(createForm(submission));
       const notif = {
         message: `Form added.`,
         type: "success",
@@ -76,7 +81,7 @@ const CreateForm = () => {
     <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 min-h-screen">
       <div id="form" className="flex justify-between px-4 mx-auto max-w-6xl ">
         <article className="mx-auto w-full max-w-6xl	 format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             <header className="mb-4 lg:mb-6 not-format">
               <h1 class="mb-8 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
                 Add a Form
@@ -91,6 +96,20 @@ const CreateForm = () => {
                 onChange={handleTitleChange}
                 required={true}
               />
+              <div id="fileUpload">
+                <div className="mb-2 block">
+                  <h2 class="pt-6 pb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
+                    Company Logo
+                  </h2>
+                </div>
+                <input
+                  type="file"
+                  id="logo"
+                  name="logo"
+                  accept="image/png, image/jpeg"
+                  onChange={handleFileChange}
+                ></input>
+              </div>
             </header>
             <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               Questions

@@ -20,6 +20,7 @@ const FormView = ({ form }) => {
   if (form === undefined) {
     return null;
   }
+
   const form1 = sampleForms.find((form2) => form2.id === form.id);
 
   const questionsToSubmit = form.questions;
@@ -79,6 +80,7 @@ const FormView = ({ form }) => {
             <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
+            <img src={`/images/${form.logo}`} />
             <div className="flex flex-wrap items-center gap-2 mt-6">
               <Button
                 href={`/forms/edit/${form.id}`}

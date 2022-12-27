@@ -1,5 +1,17 @@
 const sampleFormRouter = require("express").Router();
+const multer = require("multer");
 const sampleForm = require("../models/sampleForm");
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./frontend/public/images");
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 sampleFormRouter.get("/", async (req, res) => {
   const forms = await sampleForm.find({});
@@ -15,51 +27,62 @@ sampleFormRouter.get("/:id", async (request, response) => {
   }
 });
 
-sampleFormRouter.post("/", async (request, response, next) => {
-  const body = request.body;
+sampleFormRouter.post(
+  "/",
+  upload.single("logo"),
+  async (request, response, next) => {
+    const body = request.body;
+    console.log(body.questions);
 
-  const newSampleForm = new sampleForm({
-    title: body.title,
-    questions: body.questions,
-  });
-  try {
-    const savedForm = await newSampleForm.save();
-    response.status(201).json(savedForm);
-  } catch (exception) {
-    next(exception);
-  }
-});
-
-sampleFormRouter.put("/:id", async (request, response, next) => {
-  const body = request.body;
-  if (!body.questions) {
-    return response.status(400).json({
-      error: "questions are required",
+    const newSampleForm = new sampleForm({
+      title: body.title,
+      questions: JSON.parse(body.questions),
+      logo: request.file.originalname,
     });
+    try {
+      const savedForm = await newSampleForm.save();
+      response.status(201).json(savedForm);
+    } catch (exception) {
+      next(exception);
+    }
   }
-  if (!body.title) {
-    return response.status(400).json({
-      error: "title is required",
-    });
-  }
+);
 
-  const form = {
-    title: body.title,
-    questions: body.questions,
-  };
-  try {
-    const updatedForm = await sampleForm.findByIdAndUpdate(
-      request.params.id,
-      form,
-      {
-        new: true,
-      }
-    );
-    response.json(updatedForm.toJSON());
-  } catch (exception) {
-    next(exception);
+sampleFormRouter.put(
+  "/:id",
+  upload.single("logo"),
+  async (request, response, next) => {
+    const body = request.body;
+    if (!body.questions) {
+      return response.status(400).json({
+        error: "questions are required",
+      });
+    }
+    if (!body.title) {
+      return response.status(400).json({
+        error: "title is required",
+      });
+    }
+
+    const form = {
+      title: body.title,
+      questions: body.questions,
+      logo: request.file.originalname,
+    };
+    try {
+      const updatedForm = await sampleForm.findByIdAndUpdate(
+        request.params.id,
+        form,
+        {
+          new: true,
+        }
+      );
+      response.json(updatedForm.toJSON());
+    } catch (exception) {
+      next(exception);
+    }
   }
-});
+);
 
 sampleFormRouter.delete("/:id", async (request, response, next) => {
   try {
