@@ -27,6 +27,10 @@ const CreateForm = () => {
     setTitle(event.target.value);
   };
   const handleFileChange = (event) => {
+    if (event.target.files[0].size > 2) {
+      alert("File size exceeds 2MB.");
+    }
+    fileExt = event.target.file[0];
     setFile(event.target.files[0]);
   };
 
@@ -59,7 +63,7 @@ const CreateForm = () => {
     submission.append("title", title);
     submission.append("logo", file);
     submission.append("questions", JSON.stringify(questions));
-    console.log(submission);
+
     try {
       await dispatch(createForm(submission));
       const notif = {
@@ -102,13 +106,11 @@ const CreateForm = () => {
                     Company Logo
                   </h2>
                 </div>
-                <input
-                  type="file"
-                  id="logo"
-                  name="logo"
+                <FileInput
+                  id="file"
                   accept="image/png, image/jpeg"
                   onChange={handleFileChange}
-                ></input>
+                />
               </div>
             </header>
             <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">

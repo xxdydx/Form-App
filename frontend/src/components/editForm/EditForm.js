@@ -92,11 +92,10 @@ const EditForm = ({ form }) => {
       });
     }
 
-    const submission = {
-      title: title,
-      questions: questions,
-      id: form.id,
-    };
+    const submission = new FormData();
+    submission.append("title", title);
+    submission.append("logo", file);
+    submission.append("questions", JSON.stringify(questions));
 
     try {
       await dispatch(updateForm(submission));
@@ -135,6 +134,18 @@ const EditForm = ({ form }) => {
                 value={title}
                 required={true}
               />
+              <div id="fileUpload">
+                <div className="mb-2 block">
+                  <h2 class="pt-6 pb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
+                    Company Logo
+                  </h2>
+                </div>
+                <FileInput
+                  id="file"
+                  accept="image/png, image/jpeg"
+                  onChange={handleFileChange}
+                />
+              </div>
             </header>
             <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               Questions
