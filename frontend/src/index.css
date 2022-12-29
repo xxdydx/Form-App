@@ -1,30 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
-html { font-family: 'Inter', sans-serif; 
+html {
+  font-family: "Inter", sans-serif;
 }
 tr {
-    page-break-inside: avoid;
+  page-break-inside: avoid;
 }
 td {
-    page-break-inside:avoid
+  page-break-inside: avoid;
 }
 th {
-    page-break-inside: avoid;
+  page-break-inside: avoid;
 }
 #info-block {
-    page-break-inside: avoid;
+  page-break-inside: avoid;
 }
-
-
-
-  
-
-
-
-
-
-
-

@@ -37,10 +37,9 @@ const FormView = ({ form }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const sign = sigCanvas.current.getCanvas().toDataURL("image/png");
-
     const newFormSubmission = new FormData();
     newFormSubmission.append("title", form.title);
-    newFormSubmission.append("logo", form.logo);
+    newFormSubmission.append("logo", form1.logo);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
     newFormSubmission.append("signature", sign);
     newFormSubmission.append("name", name);
@@ -130,6 +129,7 @@ const FormView = ({ form }) => {
                   type="text"
                   sizing="sm"
                   onChange={({ target }) => setName(target.value)}
+                  required={true}
                 />
               </div>
               <div>
@@ -141,6 +141,7 @@ const FormView = ({ form }) => {
                   type="text"
                   sizing="sm"
                   onChange={({ target }) => setCompany(target.value)}
+                  required={true}
                 />
               </div>
               <div>
@@ -152,6 +153,7 @@ const FormView = ({ form }) => {
                   type="text"
                   sizing="sm"
                   onChange={({ target }) => setJobTitle(target.value)}
+                  required={true}
                 />
               </div>
               <div>
@@ -161,11 +163,12 @@ const FormView = ({ form }) => {
                 <SignatureCanvas
                   penColor="black"
                   canvasProps={{
-                    width: 400,
-                    height: 150,
+                    width: 250,
+                    height: 100,
                     className: "border border-black sigCanvas",
                   }}
                   ref={sigCanvas}
+                  required={true}
                 />
                 <Button
                   size="xs"

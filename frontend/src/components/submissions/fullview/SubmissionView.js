@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { createSubmission } from "../../../reducers/formReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "flowbite-react";
 import html2pdf from "html2pdf.js";
@@ -20,15 +18,21 @@ const SubmissionView = ({ form }) => {
   const questions = form.questions;
   const sections1 = questions.map((question) => question.section);
   const sections = [...new Set(sections1)];
+  const naming = () => {
+    var checklist = form.title.replaceAll(" ", "_");
+    var date = form.dateSubmitted.split("T")[0];
+    var string = date.concat("_WAH_", checklist, ".pdf");
+    return string;
+  };
+
   const handleClick = (event) => {
     const element = document.getElementById("form");
     html2pdf(element, {
-      margin: 0.2,
-      filename: "form.pdf",
-      image: { type: "jpg", quality: 1 },
+      margin: 0.3,
+      filename: naming(),
       html2canvas: {
-        scale: 1,
-        dpi: 192,
+        scale: 1.5,
+        dpi: 72,
         logging: true,
         letterRendering: true,
       },
@@ -84,48 +88,72 @@ const SubmissionView = ({ form }) => {
             <h1 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
-            {sections.map((section, i) => (
-              <Section key={i} section={section} form={form} />
-            ))}
+            <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th
+                    scope="col"
+                    class="border border-black text-center w-1/12 py-2 px-3 "
+                  >
+                    S/N
+                  </th>
 
-            <table
-              id="info-block"
-              class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400"
-            >
-              <tr class="bg-white   dark:bg-gray-800 dark:border-gray-700">
-                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
-                  Name
-                </td>
-                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
-                  Job Title
-                </td>
-                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
-                  Date & Time
-                </td>
+                  <th scope="col" class="border border-black w-7/12 py-2 px-3 ">
+                    Item
+                  </th>
 
-                <td class="border-l border-t border-r border-black  text-black  text-sm py-2 px-3">
-                  Signature
-                </td>
-              </tr>
-              <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700">
-                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
-                  {form.name}
-                </td>
-                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
-                  {form.jobTitle}
-                </td>
-                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
-                  {new Date(form.dateSubmitted).toLocaleString("en-SG")}
-                </td>
-
-                <td
-                  rowspan="3"
-                  class="border-l border-b border-r border-black text-black text-center text-base py-2 px-3"
-                >
-                  <img src={form.signature} />
-                </td>
-              </tr>
+                  <th
+                    scope="col"
+                    class="border border-black w-2/12 py-2 px-3"
+                  ></th>
+                  <th scope="col" class="border border-black w-2/12 py-2 px-3">
+                    Remarks
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {sections.map((section, i) => (
+                  <Section key={i} section={section} form={form} />
+                ))}
+              </tbody>
             </table>
+            <div id="info-block">
+              <table class="table-fixed mt-2 w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tr class="bg-white   dark:bg-gray-800 dark:border-gray-700">
+                  <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                    Name
+                  </td>
+                  <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                    Job Title
+                  </td>
+                  <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                    Date & Time
+                  </td>
+
+                  <td class="border-l border-t border-r border-black  text-black  text-sm py-2 px-3">
+                    Signature
+                  </td>
+                </tr>
+                <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700">
+                  <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                    {form.name}
+                  </td>
+                  <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                    {form.jobTitle}
+                  </td>
+                  <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                    {new Date(form.dateSubmitted).toLocaleString("en-SG")}
+                  </td>
+
+                  <td
+                    rowspan="3"
+                    class="border-l border-b border-r border-black text-black text-center text-base py-2 px-3"
+                  >
+                    <img src={form.signature} />
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </article>
       </div>
