@@ -11,8 +11,8 @@ const Section = ({ section, form }) => {
   );
 
   return (
-    <div className="py-2">
-      <h1 className="text-xl pb-4 font-bold dark:text-white">
+    <div className="">
+      <h1 className="text-base pb-2 font-bold dark:text-white">
         Section {section}
       </h1>
       <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">

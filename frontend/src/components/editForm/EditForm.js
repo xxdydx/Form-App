@@ -26,6 +26,7 @@ const EditForm = ({ form }) => {
     setTitle(form.title);
     setOriginalQns(qns1);
     setCounter(form.questions.length);
+    setFile(form.logo);
     var abc = {};
     for (var i = 0; i < form.questions.length; i++) {
       abc[i] = qns1[i].content;

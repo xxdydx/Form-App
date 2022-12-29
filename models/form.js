@@ -18,6 +18,10 @@ const formSchema = new mongoose.Schema({
   title: String,
   dateSubmitted: Date,
   logo: String,
+  signature: String,
+  name: String,
+  company: String,
+  jobTitle: String,
   questions: [questionSchema],
 });
 formSchema.set("toJSON", {

@@ -8,7 +8,15 @@ html { font-family: 'Inter', sans-serif;
 tr {
     page-break-inside: avoid;
 }
-
+td {
+    page-break-inside:avoid
+}
+th {
+    page-break-inside: avoid;
+}
+#info-block {
+    page-break-inside: avoid;
+}
 
 
 

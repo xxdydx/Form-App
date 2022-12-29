@@ -16,16 +16,22 @@ const SubmissionView = ({ form }) => {
   if (form === undefined) {
     return null;
   }
+
   const questions = form.questions;
   const sections1 = questions.map((question) => question.section);
   const sections = [...new Set(sections1)];
   const handleClick = (event) => {
     const element = document.getElementById("form");
     html2pdf(element, {
-      margin: 0.5,
+      margin: 0.2,
       filename: "form.pdf",
-      image: { type: "png", quality: 1 },
-      html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+      image: { type: "jpg", quality: 1 },
+      html2canvas: {
+        scale: 1,
+        dpi: 192,
+        logging: true,
+        letterRendering: true,
+      },
       jsPDF: { unit: "in", format: "a4" },
     });
   };
@@ -75,12 +81,51 @@ const SubmissionView = ({ form }) => {
 
           <div id="form" class="overflow-x-auto relative">
             <img className="pb-6" src={`/images/${form.logo}`} />
-            <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
+            <h1 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
             {sections.map((section, i) => (
               <Section key={i} section={section} form={form} />
             ))}
+
+            <table
+              id="info-block"
+              class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400"
+            >
+              <tr class="bg-white   dark:bg-gray-800 dark:border-gray-700">
+                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                  Name
+                </td>
+                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                  Job Title
+                </td>
+                <td class="border-l border-t border-black  text-black  text-sm py-2 px-3">
+                  Date & Time
+                </td>
+
+                <td class="border-l border-t border-r border-black  text-black  text-sm py-2 px-3">
+                  Signature
+                </td>
+              </tr>
+              <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700">
+                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                  {form.name}
+                </td>
+                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                  {form.jobTitle}
+                </td>
+                <td class="border-l border-b border-black text-black text-center text-base py-2 px-3">
+                  {new Date(form.dateSubmitted).toLocaleString("en-SG")}
+                </td>
+
+                <td
+                  rowspan="3"
+                  class="border-l border-b border-r border-black text-black text-center text-base py-2 px-3"
+                >
+                  <img src={form.signature} />
+                </td>
+              </tr>
+            </table>
           </div>
         </article>
       </div>

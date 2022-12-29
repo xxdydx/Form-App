@@ -4,7 +4,7 @@ import { createSubmission } from "../../../reducers/formReducer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { initializeSampleForms } from "../../../reducers/sampleFormReducer";
-import { Button } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import html2pdf from "html2pdf.js";
 import { useNavigate } from "react-router-dom";
 import { setNotification } from "../../../reducers/notificationReducer";
@@ -13,11 +13,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteForm } from "../../../reducers/sampleFormReducer";
 import { useState } from "react";
+import SignatureCanvas from "react-signature-canvas";
+import { useRef } from "react";
 
 const FormView = ({ form }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sampleForms = useSelector((state) => state.sampleForms);
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const sigCanvas = useRef();
   if (form === undefined) {
     return null;
   }
@@ -30,11 +36,16 @@ const FormView = ({ form }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const sign = sigCanvas.current.getCanvas().toDataURL("image/png");
 
     const newFormSubmission = new FormData();
     newFormSubmission.append("title", form.title);
     newFormSubmission.append("logo", form.logo);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
+    newFormSubmission.append("signature", sign);
+    newFormSubmission.append("name", name);
+    newFormSubmission.append("company", company);
+    newFormSubmission.append("jobTitle", jobTitle);
     newFormSubmission.append("questions", JSON.stringify(form1.questions));
 
     try {
@@ -109,6 +120,64 @@ const FormView = ({ form }) => {
             {sections.map((section, i) => (
               <Section key={i} section={section} form={form} />
             ))}
+            <div className="flex flex-col gap-4 pb-12">
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Name" />
+                </div>
+                <TextInput
+                  id="small"
+                  type="text"
+                  sizing="sm"
+                  onChange={({ target }) => setName(target.value)}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Company" />
+                </div>
+                <TextInput
+                  id="small"
+                  type="text"
+                  sizing="sm"
+                  onChange={({ target }) => setCompany(target.value)}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Job Title" />
+                </div>
+                <TextInput
+                  id="small"
+                  type="text"
+                  sizing="sm"
+                  onChange={({ target }) => setJobTitle(target.value)}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Signature" className="mb-4" />
+                </div>
+                <SignatureCanvas
+                  penColor="black"
+                  canvasProps={{
+                    width: 400,
+                    height: 150,
+                    className: "border border-black sigCanvas",
+                  }}
+                  ref={sigCanvas}
+                />
+                <Button
+                  size="xs"
+                  className="mt-4"
+                  onClick={() => sigCanvas.current.clear()}
+                  color="failure"
+                >
+                  Clear
+                </Button>
+              </div>
+            </div>
+
             <Button className="mt-4 w-24" type="submit" variant="contained">
               Submit
             </Button>
