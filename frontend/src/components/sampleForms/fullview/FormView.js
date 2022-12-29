@@ -39,7 +39,7 @@ const FormView = ({ form }) => {
     const sign = sigCanvas.current.getCanvas().toDataURL("image/png");
     const newFormSubmission = new FormData();
     newFormSubmission.append("title", form.title);
-    newFormSubmission.append("logo", form1.logo);
+    newFormSubmission.append("logo", form.logo);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
     newFormSubmission.append("signature", sign);
     newFormSubmission.append("name", name);
