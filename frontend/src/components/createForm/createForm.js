@@ -103,13 +103,14 @@ const CreateForm = () => {
               <div id="fileUpload">
                 <div className="mb-2 block">
                   <h2 class="pt-6 pb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
-                    Company Logo
+                    Company Banner
                   </h2>
                 </div>
                 <FileInput
                   id="file"
                   accept="image/png, image/jpeg"
                   onChange={handleFileChange}
+                  helperText="This banner will appear on top of every PDF file. Choose a JPG/PNG file with a recommended size of 1200 x 100 pixels."
                 />
               </div>
             </header>
