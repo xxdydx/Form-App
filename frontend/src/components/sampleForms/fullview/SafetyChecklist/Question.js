@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { TextInput } from "flowbite-react";
 import { useState } from "react";
-import { updateQuestion } from "../../../reducers/sampleFormReducer";
+import { updateQuestion } from "../../../../reducers/sampleFormReducer";
 
 const Question = ({ question, id }) => {
   const dispatch = useDispatch();

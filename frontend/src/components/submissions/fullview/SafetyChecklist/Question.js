@@ -6,31 +6,6 @@ const Question = ({ question, id }) => {
   const questions1 = submission.questions;
   const index = questions1.findIndex((qn) => qn.id === question.id);
 
-  const answerForQ = (answer) => {
-    if (answer === "No") {
-      return (
-        <>
-          <s>Yes /</s> No <s>/ NA</s>
-        </>
-      );
-    }
-    if (answer === "N/A") {
-      return (
-        <>
-          <s>Yes / No /</s> NA
-        </>
-      );
-    }
-    if (answer === "Yes") {
-      return (
-        <>
-          Yes / <s> No / NA </s>
-        </>
-      );
-    } else {
-      return null;
-    }
-  };
   return (
     <tr class="bg-white border-b  dark:bg-gray-800 dark:border-gray-700">
       <td class="border border-black  text-black text-center text-sm py-2 px-3">

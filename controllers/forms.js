@@ -37,6 +37,7 @@ formRouter.post("/", upload.single("logo"), async (request, response, next) => {
   if (!body.questions) {
     body.questions = [];
   }
+
   if (!body.title) {
     return response.status(400).json({
       error: "title is required",
@@ -45,6 +46,7 @@ formRouter.post("/", upload.single("logo"), async (request, response, next) => {
 
   const form = new Form({
     title: body.title,
+    type: body.type,
     dateSubmitted: JSON.parse(body.dateSubmitted),
     logo: body.logo,
     signature: body.signature,
@@ -52,6 +54,7 @@ formRouter.post("/", upload.single("logo"), async (request, response, next) => {
     company: body.company,
     jobTitle: body.jobTitle,
     questions: JSON.parse(body.questions),
+    location: body.location,
   });
   try {
     const savedForm = await form.save();
@@ -79,7 +82,14 @@ formRouter.put("/:id", async (request, response, next) => {
 
   const form = {
     title: body.title,
+    type: body.type,
     dateSubmitted: body.dateSubmitted,
+    logo: body.logo,
+    signature: body.signature,
+    name: body.name,
+    company: body.company,
+    jobTitle: body.jobTitle,
+    location: body.location,
     questions: body.questions,
   };
   try {

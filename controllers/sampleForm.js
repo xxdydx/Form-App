@@ -34,6 +34,7 @@ sampleFormRouter.post(
     const body = request.body;
     const newSampleForm = new sampleForm({
       title: body.title,
+      type: body.type,
       questions: JSON.parse(body.questions),
       logo: request.file.originalname,
     });
@@ -64,8 +65,9 @@ sampleFormRouter.put(
 
     const form = {
       title: body.title,
+      type: body.type,
       questions: JSON.parse(body.questions),
-      logo: request.file.originalname,
+      logo: body.logo,
     };
     try {
       const updatedForm = await sampleForm.findByIdAndUpdate(

@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useSelector } from "react-redux";
-import Section from "./components/sampleForms/fullview/Section";
+import Section from "./components/sampleForms/fullview/SafetyChecklist/Section";
 import { createSubmission } from "./reducers/formReducer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
