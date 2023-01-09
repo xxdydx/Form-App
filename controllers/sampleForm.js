@@ -35,6 +35,7 @@ sampleFormRouter.post(
     const newSampleForm = new sampleForm({
       title: body.title,
       type: body.type,
+      location: body.location,
       questions: JSON.parse(body.questions),
       logo: request.file.originalname,
     });
@@ -66,6 +67,7 @@ sampleFormRouter.put(
     const form = {
       title: body.title,
       type: body.type,
+      location: body.location,
       questions: JSON.parse(body.questions),
       logo: body.logo,
     };

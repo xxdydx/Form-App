@@ -27,17 +27,23 @@ const Question = ({ question, id }) => {
       ],
       logo: form.logo,
       type: form.type,
+      location: form.location,
       id: id,
     };
     dispatch(updateQuestion(updatedForm));
   };
 
   return (
-    <div className="py-2 w-1/2">
+    <div className="py-2 w-auto ">
       <div className="flex items-center gap-2">
-        <p className="w-3/4">
-          {index + 1}. {question.content}
-        </p>
+        <div className="w-3/4">
+          <p className="text-lg">
+            {index + 1}. {question.content}
+          </p>
+
+          <p>&nbsp; &nbsp; Quantity: {question.quantity}</p>
+        </div>
+
         <div className="w-1/4">
           <Checkbox
             onChange={AnswerOnChange}
