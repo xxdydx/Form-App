@@ -3,6 +3,7 @@ const questionSchema = new mongoose.Schema({
   content: String,
   section: String,
   answer: String,
+  quantity: String,
   remarks: String,
 });
 questionSchema.set("toJSON", {
@@ -17,6 +18,7 @@ const sampleFormSchema = new mongoose.Schema({
   title: String,
   type: String,
   logo: String,
+  location: String,
   questions: [questionSchema],
 });
 sampleFormSchema.set("toJSON", {

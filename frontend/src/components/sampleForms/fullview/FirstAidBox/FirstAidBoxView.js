@@ -21,8 +21,6 @@ const FirstAidBoxView = ({ form }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [location, setLocation] = useState("");
-
   if (form === undefined) {
     return null;
   }
@@ -36,7 +34,7 @@ const FirstAidBoxView = ({ form }) => {
     newFormSubmission.append("type", form.type);
     newFormSubmission.append("logo", form.logo);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
-    newFormSubmission.append("location", location);
+    newFormSubmission.append("location", form.location);
     newFormSubmission.append("questions", JSON.stringify(form.questions));
 
     try {
@@ -86,6 +84,7 @@ const FirstAidBoxView = ({ form }) => {
             <h1 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
+            <p>Location: {form.location}</p>
 
             <div className="flex flex-wrap items-center gap-2 mt-6">
               <Button
@@ -111,20 +110,6 @@ const FirstAidBoxView = ({ form }) => {
             {questions.map((question) => (
               <Question key={question.id} question={question} id={form.id} />
             ))}
-            <div className="flex flex-col gap-4 pb-12">
-              <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="small" value="Location" />
-                </div>
-                <TextInput
-                  id="small"
-                  type="text"
-                  sizing="sm"
-                  onChange={({ target }) => setLocation(target.value)}
-                  required={true}
-                />
-              </div>
-            </div>
 
             <Button className="mt-4 w-24" type="submit" variant="contained">
               Submit

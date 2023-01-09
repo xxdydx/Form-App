@@ -7,7 +7,7 @@ const Question = ({ question, id }) => {
   const index = questions1.findIndex((qn) => qn.id === question.id);
 
   const submissions = allSubmissions.filter(
-    (s) => s.title === submission.title
+    (s) => s.title === submission.title && s.location === submission.location
   );
 
   const janAns = () => {
@@ -271,10 +271,10 @@ const Question = ({ question, id }) => {
       <td scope="col" class="border border-black  py-2 px-3 ">
         {marAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black py-2 px-3 ">
         {aprAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black py-2 px-3 ">
         {mayAns()}
       </td>
       <td scope="col" class="border border-black  py-2 px-3 ">
