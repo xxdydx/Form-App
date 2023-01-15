@@ -13,9 +13,9 @@ const Question = ({ question, id }) => {
   const janAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 0 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 0 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -33,9 +33,9 @@ const Question = ({ question, id }) => {
   const febAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 1 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 1 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -53,9 +53,9 @@ const Question = ({ question, id }) => {
   const marAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 2 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 2 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -73,9 +73,9 @@ const Question = ({ question, id }) => {
   const aprAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 3 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 3 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -93,9 +93,9 @@ const Question = ({ question, id }) => {
   const mayAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 4 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 4 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -113,9 +113,9 @@ const Question = ({ question, id }) => {
   const junAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 5 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 5 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -133,9 +133,9 @@ const Question = ({ question, id }) => {
   const julAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 6 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 6 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -153,9 +153,9 @@ const Question = ({ question, id }) => {
   const augAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 7 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 7 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -173,9 +173,9 @@ const Question = ({ question, id }) => {
   const sepAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 8 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 8 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -193,9 +193,9 @@ const Question = ({ question, id }) => {
   const octAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 9 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 9 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -213,9 +213,9 @@ const Question = ({ question, id }) => {
   const novAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 10 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 10 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -233,9 +233,9 @@ const Question = ({ question, id }) => {
   const decAns = () => {
     const submissionforMth = submissions.findLast(
       (s) =>
-        new Date(s.dateSubmitted).getMonth() === 11 &&
-        new Date(s.dateSubmitted).getFullYear() ===
-          new Date(submission.dateSubmitted).getFullYear()
+        new Date(s.dateOfForm).getMonth() === 11 &&
+        new Date(s.dateOfForm).getFullYear() ===
+          new Date(submission.dateOfForm).getFullYear()
     );
     if (submissionforMth) {
       const qninqn = submissionforMth.questions.find(
@@ -253,49 +253,53 @@ const Question = ({ question, id }) => {
 
   return (
     <tr>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black  py-2 px-3 ">
         {index + 1}
       </td>
-      <td scope="col" colspan="4" class="border border-black py-2 px-3 ">
+      <td
+        scope="col"
+        colspan="4"
+        class="border border-black text-black py-2 px-3 "
+      >
         {question.content}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
-        Jan
+      <td scope="col" class="border border-black text-black  py-2 px-3 ">
+        {question.quantity}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {janAns()}
       </td>
-      <td scope="col" class="border border-black py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {febAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {marAns()}
       </td>
-      <td scope="col" class="border border-black py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {aprAns()}
       </td>
-      <td scope="col" class="border border-black py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {mayAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {junAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {julAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black  py-2 px-3 ">
         {augAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {sepAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {octAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black py-2 px-3 ">
         {novAns()}
       </td>
-      <td scope="col" class="border border-black  py-2 px-3 ">
+      <td scope="col" class="border border-black text-black  py-2 px-3 ">
         {decAns()}
       </td>
     </tr>
