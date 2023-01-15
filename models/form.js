@@ -19,6 +19,7 @@ const formSchema = new mongoose.Schema({
   title: String,
   type: String,
   dateSubmitted: Date,
+  dateOfForm: Date,
   logo: String,
   signature: String,
   name: String,

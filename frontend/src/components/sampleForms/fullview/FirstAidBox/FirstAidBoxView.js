@@ -16,15 +16,19 @@ import { useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { useRef } from "react";
 import FirstAidBox from "../../../createForm/FirstAidBox";
+import { TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 const FirstAidBoxView = ({ form }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [date, setDate] = useState(null);
 
   if (form === undefined) {
     return null;
   }
-
   const questions = form.questions;
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +38,7 @@ const FirstAidBoxView = ({ form }) => {
     newFormSubmission.append("type", form.type);
     newFormSubmission.append("logo", form.logo);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
+    newFormSubmission.append("dateOfForm", JSON.stringify(date.$d));
     newFormSubmission.append("location", form.location);
     newFormSubmission.append("questions", JSON.stringify(form.questions));
 
@@ -107,9 +112,22 @@ const FirstAidBoxView = ({ form }) => {
             <address className="flex items-center mb-6 not-italic"></address>
           </header>
           <form onSubmit={handleSubmit}>
-            {questions.map((question) => (
-              <Question key={question.id} question={question} id={form.id} />
-            ))}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Date of Form"
+                value={date}
+                inputFormat="DD/MM/YYYY"
+                onChange={(newValue) => {
+                  setDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <div className="pt-6">
+              {questions.map((question) => (
+                <Question key={question.id} question={question} id={form.id} />
+              ))}
+            </div>
 
             <Button className="mt-4 w-24" type="submit" variant="contained">
               Submit

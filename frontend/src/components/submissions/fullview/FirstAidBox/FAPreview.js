@@ -85,9 +85,13 @@ const FAPreview = ({ form }) => {
 
           <div id="form" class="overflow-x-auto relative">
             <img className="pb-6" src={`/images/${form.logo}`} />
-            <h1 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
+            <h1 class=" text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               {form.title}
             </h1>
+            <p className="mb-4">
+              Date of Form:{" "}
+              {new Date(form.dateOfForm).toLocaleString("en-SG").substr(0, 10)}
+            </p>
             <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-sm text-black  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -104,7 +108,7 @@ const FAPreview = ({ form }) => {
                     class="border border-black w-2/12 py-2 px-3 "
                     colspan="3"
                   >
-                    Year: {new Date(form.dateSubmitted).getFullYear()}
+                    Year: {new Date(form.dateOfForm).getFullYear()}
                   </td>
 
                   <td
