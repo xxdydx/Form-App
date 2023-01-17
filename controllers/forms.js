@@ -48,7 +48,7 @@ formRouter.post("/", upload.single("logo"), async (request, response, next) => {
     title: body.title,
     type: body.type,
     dateSubmitted: JSON.parse(body.dateSubmitted),
-    dateOfForm: JSON.parse(body.dateOfForm),
+    dateOfForm: body.dateOfForm ? JSON.parse(body.dateOfForm) : "",
     logo: body.logo,
     signature: body.signature,
     name: body.name,
