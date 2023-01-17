@@ -38,7 +38,7 @@ sampleFormRouter.post(
       location: body.location,
       company: body.company,
       questions: JSON.parse(body.questions),
-      logo: request.file ? request.file.originalname : "",
+      logo: body.logo,
     });
     try {
       const savedForm = await newSampleForm.save();
