@@ -18,6 +18,7 @@ const sampleFormSchema = new mongoose.Schema({
   title: String,
   type: String,
   logo: String,
+  company: String,
   location: String,
   questions: [questionSchema],
 });

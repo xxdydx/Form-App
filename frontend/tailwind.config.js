@@ -22,6 +22,10 @@ module.exports = {
         },
       },
     },
+    //prettier-ignore
+    text: {
+      "xs": "0.5rem",
+    },
     fontFamily: {
       body: [
         "Inter",

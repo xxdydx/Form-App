@@ -25,6 +25,7 @@ const FirstAidBoxView = ({ form }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
+  const sigCanvas = useRef();
 
   if (form === undefined) {
     return null;
@@ -32,11 +33,13 @@ const FirstAidBoxView = ({ form }) => {
   const questions = form.questions;
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const sign = sigCanvas.current.getCanvas().toDataURL("image/png");
 
     const newFormSubmission = new FormData();
     newFormSubmission.append("title", form.title);
     newFormSubmission.append("type", form.type);
-    newFormSubmission.append("logo", form.logo);
+    newFormSubmission.append("company", form.company);
+    newFormSubmission.append("signature", sign);
     newFormSubmission.append("dateSubmitted", JSON.stringify(new Date()));
     newFormSubmission.append("dateOfForm", JSON.stringify(date.$d));
     newFormSubmission.append("location", form.location);
@@ -127,6 +130,27 @@ const FirstAidBoxView = ({ form }) => {
               {questions.map((question) => (
                 <Question key={question.id} question={question} id={form.id} />
               ))}
+            </div>
+            <div className="my-6">
+              <Label htmlFor="small" value="Signature" />
+              <SignatureCanvas
+                penColor="black"
+                canvasProps={{
+                  width: 250,
+                  height: 100,
+                  className: "border border-black sigCanvas",
+                }}
+                ref={sigCanvas}
+                required={true}
+              />
+              <Button
+                size="xs"
+                className="mt-4"
+                onClick={() => sigCanvas.current.clear()}
+                color="failure"
+              >
+                Clear
+              </Button>
             </div>
 
             <Button className="mt-4 w-24" type="submit" variant="contained">
