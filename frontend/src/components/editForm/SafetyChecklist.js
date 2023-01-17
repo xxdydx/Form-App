@@ -6,6 +6,7 @@ import { VscAdd } from "react-icons/vsc";
 import { useDispatch } from "react-redux";
 import { setNotification } from "../../reducers/notificationReducer";
 import { createForm, updateForm } from "../../reducers/sampleFormReducer";
+import AWS from "aws-sdk";
 
 const SafetyChecklist = ({ form }) => {
   const [inputQuestions, setInputQuestions] = useState({});
@@ -21,6 +22,15 @@ const SafetyChecklist = ({ form }) => {
     return null;
   }
   const qns1 = form.questions;
+  AWS.config.update({
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_SECRET_KEY,
+  });
+
+  const s3 = new AWS.S3({
+    region: process.env.REACT_APP_REGION,
+    bucket: process.env.REACT_APP_BUCKET_NAME,
+  });
 
   if (form && title === "") {
     setTitle(form.title);
@@ -69,7 +79,35 @@ const SafetyChecklist = ({ form }) => {
     setTitle(event.target.value);
   };
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    const file = event.target.files[0];
+
+    // Check the file type
+    if (!file.type.match("image.*")) {
+      alert("Invalid file type. Only image files are allowed.");
+      return;
+    }
+
+    // Check the file size
+    if (file.size > 5242880) {
+      alert("File size exceeds the maximum limit of 5MB.");
+      return;
+    }
+
+    const params = {
+      Key: file.name,
+      Body: file,
+      Bucket: process.env.REACT_APP_BUCKET_NAME,
+      ContentType: file.type,
+    };
+
+    s3.upload(params, function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+        setFile(data.Location);
+      }
+    });
   };
 
   const handleOnChange = (e) => {
@@ -150,7 +188,6 @@ const SafetyChecklist = ({ form }) => {
                   id="file"
                   accept="image/png, image/jpeg"
                   onChange={handleFileChange}
-                  disabled={true}
                 />
               </div>
             </header>
