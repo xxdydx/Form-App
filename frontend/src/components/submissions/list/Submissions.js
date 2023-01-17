@@ -22,8 +22,14 @@ const Submissions = () => {
     }
   };
   const search = (value) => {
-    const filterexp = new RegExp(query, "i");
-    return filterexp.test(value.title);
+    if (value.title.toLowerCase().includes(query.toLowerCase()) === true) {
+      return true;
+    } else if (value.location) {
+      if (value.location.toLowerCase().includes(query.toLowerCase()) === true) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
@@ -64,7 +70,7 @@ const Submissions = () => {
                   type="search"
                   id="default-search"
                   class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search Forms..."
+                  placeholder="Search submissions by either title or location..."
                   onChange={({ target }) => setQuery(target.value)}
                   required
                 />
