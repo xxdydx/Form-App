@@ -166,13 +166,6 @@ const FirstAidBox = ({ form }) => {
                   />
                 </div>
               </div>
-              <div id="fileUpload">
-                <div className="mb-2 block">
-                  <h2 class="pt-6 pb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
-                    Company Banner
-                  </h2>
-                </div>
-              </div>
             </header>
             <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
               Questions

@@ -51,6 +51,7 @@ const SafetyChecklist = () => {
       alert("File size exceeds the maximum limit of 5MB.");
       return;
     }
+    
     const params = {
       Key: file.name,
       Body: file,
