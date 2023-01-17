@@ -8,6 +8,7 @@ import { setNotification } from "../../../../reducers/notificationReducer";
 import { deleteSubmission } from "../../../../reducers/formReducer";
 import { useSelector } from "react-redux";
 import Question from "./Question";
+import OtherInfo from "./OtherInfo";
 
 const FAPreview = ({ form }) => {
   const navigate = useNavigate();
@@ -84,20 +85,21 @@ const FAPreview = ({ form }) => {
           </header>
 
           <div id="form" class="overflow-x-auto relative">
-            <img className="pb-6" src={`/images/${form.logo}`} />
-            <h1 class=" text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
-              {form.title}
-            </h1>
-            <p className="mb-4">
-              Date of Form:{" "}
-              {new Date(form.dateOfForm).toLocaleString("en-SG").substr(0, 10)}
-            </p>
+            <div className="">
+              <h1 class="float-left  text-2xl mb-2 tracking-tight font-bold text-gray-900 dark:text-white">
+                {form.title}
+              </h1>
+              <h1 class="float-right text-2xl mb-2 tracking-tight text-right text-gray-900 dark:text-white">
+                {form.company}
+              </h1>
+            </div>
+
             <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-sm text-black  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <td
                     scope="col"
-                    class="border border-black font-bold text-lg text-center w-4/12 py-2 px-3 "
+                    class="border border-black font-bold text-sm text-center w-4/12 py-2 px-3 "
                     colspan="6"
                   >
                     First Aid Box
@@ -122,14 +124,14 @@ const FAPreview = ({ form }) => {
                 <tr>
                   <td
                     scope="col"
-                    class="border border-black font-bold text-lg text-center w-1/12 py-2 px-3 "
+                    class="border border-black font-bold text-sm text-center w-1/12 py-2 px-3 "
                     rowspan="2"
                   >
                     S/N
                   </td>
                   <td
                     scope="col"
-                    class="border border-black font-bold text-lg text-center w-2/12 py-2 px-3 "
+                    class="border border-black font-bold text-sm text-center w-2/12 py-2 px-3 "
                     rowspan="2"
                     colspan="4"
                   >
@@ -137,7 +139,7 @@ const FAPreview = ({ form }) => {
                   </td>
                   <td
                     scope="col"
-                    class="border border-black font-bold text-lg text-center w-1/12 py-2 px-3 "
+                    class="border border-black font-bold text-sm text-center w-1/12 py-2 px-3 "
                     rowspan="2"
                   >
                     Qty
@@ -145,47 +147,83 @@ const FAPreview = ({ form }) => {
 
                   <td
                     scope="col"
-                    class="border border-black w-8/12 py-2 px-3 text-center font-bold uppercase "
+                    class="border border-black w-8/12 py-2 text-sm text-center font-bold uppercase "
                     colspan="12"
                   >
                     Monthly Checklist
                   </td>
                 </tr>
                 <tr>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2 "
+                  >
                     Jan
                   </td>
-                  <td scope="col" class="border border-black py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2 "
+                  >
                     Feb
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Mar
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Apr
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2 "
+                  >
                     May
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Jun
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Jul
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Aug
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Sep
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Oct
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2 "
+                  >
                     Nov
                   </td>
-                  <td scope="col" class="border border-black  py-2 px-3 ">
+                  <td
+                    scope="col"
+                    class="border border-black text-sm text-center  py-2"
+                  >
                     Dec
                   </td>
                 </tr>
@@ -198,6 +236,7 @@ const FAPreview = ({ form }) => {
                     id={form.id}
                   />
                 ))}
+                <OtherInfo id={form.id} />
               </tbody>
             </table>
           </div>

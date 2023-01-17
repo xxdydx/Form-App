@@ -253,53 +253,95 @@ const Question = ({ question, id }) => {
 
   return (
     <tr>
-      <td scope="col" class="border border-black text-black  py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-xs text-black text-center py-2   "
+      >
         {index + 1}
       </td>
       <td
         scope="col"
         colspan="4"
-        class="border border-black text-black py-2 px-3 "
+        class="border border-black text-xs text-black py-2 pl-2   "
       >
         {question.content}
       </td>
-      <td scope="col" class="border border-black text-black  py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-xs text-black text-center py-2   "
+      >
         {question.quantity}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {janAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {febAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {marAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2    "
+      >
         {aprAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {mayAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {junAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {julAns()}
       </td>
-      <td scope="col" class="border border-black text-black  py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2    "
+      >
         {augAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {sepAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {octAns()}
       </td>
-      <td scope="col" class="border border-black text-black py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2   "
+      >
         {novAns()}
       </td>
-      <td scope="col" class="border border-black text-black  py-2 px-3 ">
+      <td
+        scope="col"
+        class="border border-black text-black text-center py-2    "
+      >
         {decAns()}
       </td>
     </tr>

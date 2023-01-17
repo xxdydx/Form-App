@@ -12,7 +12,8 @@ const FirstAidBox = () => {
   const [inputQuantities, setInputQuantities] = useState({});
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  const [file, setFile] = useState("");
+  const [company, setCompany] = useState("");
+
   const [counter, setCounter] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,9 +27,6 @@ const FirstAidBox = () => {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
-  };
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
   };
 
   const handleOnChange = (e) => {
@@ -58,7 +56,7 @@ const FirstAidBox = () => {
     const submission = new FormData();
     submission.append("title", title);
     submission.append("location", location);
-    submission.append("logo", file);
+    submission.append("company", company);
     submission.append("type", "FA");
     submission.append("questions", JSON.stringify(questions));
 
@@ -105,23 +103,23 @@ const FirstAidBox = () => {
               id="base"
               type="text"
               sizing="sm"
+              className="mb-2"
               onChange={({ target }) => setLocation(target.value)}
               required={true}
             />
           </div>
-        </div>
-        <div id="fileUpload">
-          <div className="mb-2 block">
-            <h2 class="pt-6 pb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
-              Company Banner
+          <div>
+            <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
+              Company Name
             </h2>
+            <TextInput
+              id="base"
+              type="text"
+              sizing="sm"
+              onChange={({ target }) => setCompany(target.value)}
+              required={true}
+            />
           </div>
-          <FileInput
-            id="file"
-            accept="image/png, image/jpeg"
-            onChange={handleFileChange}
-            helperText="This banner will appear on top of every PDF file. Choose a JPG/PNG file with a recommended size of 1200 x 100 pixels."
-          />
         </div>
       </header>
       <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
