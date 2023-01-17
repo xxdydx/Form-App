@@ -36,8 +36,9 @@ sampleFormRouter.post(
       title: body.title,
       type: body.type,
       location: body.location,
+      company: body.company,
       questions: JSON.parse(body.questions),
-      logo: request.file.originalname,
+      logo: request.file ? request.file.originalname : "",
     });
     try {
       const savedForm = await newSampleForm.save();
@@ -68,8 +69,9 @@ sampleFormRouter.put(
       title: body.title,
       type: body.type,
       location: body.location,
+      company: body.company,
       questions: JSON.parse(body.questions),
-      logo: body.logo,
+      logo: request.file ? request.file.filename : body.logo,
     };
     try {
       const updatedForm = await sampleForm.findByIdAndUpdate(

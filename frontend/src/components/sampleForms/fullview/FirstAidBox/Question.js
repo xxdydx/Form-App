@@ -28,6 +28,7 @@ const Question = ({ question, id }) => {
       logo: form.logo,
       type: form.type,
       location: form.location,
+      company: form.company,
       id: id,
     };
     dispatch(updateQuestion(updatedForm));
