@@ -162,6 +162,7 @@ const FirstAidBox = ({ form }) => {
                     id="base"
                     type="text"
                     sizing="sm"
+                    value={company}
                     onChange={({ target }) => setCompany(target.value)}
                   />
                 </div>
